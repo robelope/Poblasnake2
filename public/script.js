@@ -1,27 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pobla-PereSnake</title>
-    <style>
-        body{
-            background: #666;
-            text-align: center;
-            margin: 60px 0 0 0 ;
-        }
-        canvas{
-            border: solid 6px gray;
-            background: seagreen;
-        }
-    </style>
-</head>
-<body>
-    <canvas width="400px" height="400px"></canvas>
-    
-    <script>
-        const nokia = 400;
-        const DIR = {
+const nokia = 400;
+const DIR = {
             KeyS:[0,1],
             KeyW:[0,-1],
             KeyA:[-1,0],
@@ -31,7 +9,19 @@
             ArrowLeft:[-1,0],
             ArrowRight:[1,0]
         }
-        let cont = {
+const pobla = {
+    x: 0,
+    y: 0,
+    width: 300,
+    height: 300,
+    frameX: 0,
+    frameY: 0,
+    veloc: 9,
+    mueve: false
+};
+const playerSprite = new Image();
+    playerSprite.src = ""
+let cont = {
             direccion:{x:1, y:0},
             bicho:[{x:0, y:0}],
             comida:{x:0, y:250},
@@ -40,11 +30,13 @@
             IV: 80
             
         }
-        let mov
-        let pantalla = document.querySelector('canvas');
-        let ctx = pantalla.getContext('2d')
-        ctx.fillStyle = "dimgray";
-        ctx.fillRect(10,10,10,10);
+    let mov
+    let pantalla = document.querySelector('canvas');
+    let ctx = pantalla.getContext('2d')
+    pantalla.width = 400; 
+    pantalla.height = 400;
+    ctx.fillStyle = "dimgray";
+    ctx.fillRect(10,10,10,10);
 
         let loop = () => {
             let cola = {}
@@ -124,7 +116,7 @@
         }
         let dibujarCoso = (color, x, y) =>{
             ctx.fillStyle = color;
-            ctx.fillRect(x*7,y*7,10,10)
+            ctx.fillRect(x*7,y*7,20,20)
         }
         let rand = () =>{
             let dir = Object.values(DIR)
@@ -166,18 +158,7 @@
 
 
         window.onload = () =>{
-            reinic();
             loop();
-        }    
-    </script>
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="/__/firebase/8.6.3/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="/__/firebase/8.6.3/firebase-analytics.js"></script>
-
-<!-- Initialize Firebase -->
-<script src="/__/firebase/init.js"></script>
-</body>
-</html>
+            reinic();
+            
+        }   
